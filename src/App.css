@@ -1,5 +1,34 @@
+
+.main-bg {
+  height: 400px;
+  /* background-image: url('./img/29cm01.jpg'); */
+  background-size:contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.main-products {
+  width: 400px;
+  cursor: pointer;
+}
+
+
+.start {
+  opacity : 0;
+}
+
+.end {
+  opacity : 1;
+  transition: opacity 0.5s;
+}
+
+
+
+
+
 .App {
   text-align: center;
+  background-color: #fcfdfd;
 }
 
 .App-logo {
