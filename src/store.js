@@ -3,8 +3,15 @@ import { configureStore, createSlice } from '@reduxjs/toolkit'
 
 let user = createSlice({
   name : 'user',
-  initialState : 'kim'
+  initialState : 'kim',
+  // state 수정해보기
+  reducers : {
+    setName(state){
+      return 'Yu and ' + state;
+    }
+  }
 })
+export let {setName} = user.actions;
 
 let stock = createSlice({
   name : 'stock',
@@ -16,8 +23,16 @@ let cart = createSlice({
   initialState : [
     {id : 0, name : 'White and Black', count : 2},
     {id : 2, name : 'Grey Yordan', count : 1}
-  ]
+  ],
+  reducers : {
+    setCount(cart){
+      let udtCart = {...cart};
+      udtCart.count++;
+      return udtCart;
+    }
+  }
 })
+export let {setCount} = cart.actions;
 
 
 export default configureStore({
