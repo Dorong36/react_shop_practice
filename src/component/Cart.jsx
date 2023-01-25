@@ -6,15 +6,15 @@ import Button from 'react-bootstrap/Button';
 // import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 // import type { RootState, AppDispatch } from '../store'
 
-import {setName, setCount} from '../store';
+import {setName, setAge, agePlus} from '../store/userSlice';
 
 function Cart(){
 
     // Redux store에 있던 모든 state가 들어옴
     let states = useSelector((state)=>{ return state })
-    console.log(states)
-    console.log(states.user)
-    console.log(states.stock)
+    // console.log(states)
+    // console.log(states.user)
+    // console.log(states.stock)
 
     let cart = useSelector((state) => state.cart);
     let dispatch = useDispatch();
@@ -23,9 +23,13 @@ function Cart(){
 
     return(
         <>
-            {
-                states.user
-            }의 장바구니
+            {states.user.name}({states.user.age}세)의 장바구니<br/>
+            <Button variant="warning" onClick={()=>{
+                dispatch(setAge());
+            }}>Age++</Button><br/>
+            <Button variant="warning" onClick={()=>{
+                dispatch(agePlus(100));
+            }}>Age+100</Button>
             <div className="container">
                 <Table striped bordered hover>
                     <thead>
@@ -44,11 +48,8 @@ function Cart(){
                                         <td>{a.id}</td>
                                         <td>{a.name}</td>
                                         <td>{a.count}</td>
-                                        {/* <td><Button variant="warning" onClick={()=>{
-                                            dispatch(setName());
-                                        }}>Edit</Button></td> */}
                                         <td><Button variant="warning" onClick={()=>{
-                                            dispatch(setCount());
+                                            dispatch(setName());
                                         }}>+</Button></td>
                                     </tr>
                                 )

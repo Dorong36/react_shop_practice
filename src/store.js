@@ -1,17 +1,40 @@
 // js ver.
 import { configureStore, createSlice } from '@reduxjs/toolkit'
 
+// ✅ user Slice 다른 파일로 분리해서 사용해보기
+/*
 let user = createSlice({
   name : 'user',
-  initialState : 'kim',
+  initialState : {name : 'kim', age : 27},
   // state 수정해보기
   reducers : {
+    // 단일값 변경
+    // setName(state){
+    //   return 'Yu and ' + state;
+    // }
+    
+    // object 변경
     setName(state){
-      return 'Yu and ' + state;
+      // array, object는 
+      // return문 없이 직접 수정해도 state 변경됨
+      state.name = 'Yu';
+    },
+    setAge(state){
+      state.age++;
+    },
+
+    // 변경함수에 파라미터 받기
+    agePlus(state, action){
+      state.age += action.payload;
     }
   }
 })
-export let {setName} = user.actions;
+export let {setName, setAge, agePlus} = user.actions;
+*/
+import user from "./store/userSlice"
+// import 해서 사용할 jsx 파일에서도 경로 수정 필요!!
+
+
 
 let stock = createSlice({
   name : 'stock',
@@ -24,13 +47,6 @@ let cart = createSlice({
     {id : 0, name : 'White and Black', count : 2},
     {id : 2, name : 'Grey Yordan', count : 1}
   ],
-  reducers : {
-    setCount(cart){
-      let udtCart = {...cart};
-      udtCart.count++;
-      return udtCart;
-    }
-  }
 })
 export let {setCount} = cart.actions;
 
